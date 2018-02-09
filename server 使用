@@ -1,0 +1,46 @@
+服务器：
+	1. gadget  http://mrs.ai 静态页面
+		静态页面  /var/www/html
+
+		 service httpd restart
+
+	2. alpha  hic
+		代码  /dsserver
+
+
+1. 创建.ssh 文件
+	 命令：ssh-keygen
+	  ls -a ~/.ssh
+
+2. 将config配置文件放到～/.ssh文件中
+
+3. 连接服务器
+	ssh alpha
+
+4. 进入到服务器
+	cd /  ls
+5. lsof -i:端口 可以查看端口被哪个进程占用
+	lsof -i:8000
+
+6. 结束进程 kill PID
+
+7. 挂起服务
+	nohup(在dsserver/nohup.out文件) python dsserver.py
+	debug模式启动：python dsserver.py
+	日志模式启动：nohup python dsserve.py
+
+8. 上传文件到服务器
+	scp -r ~/Desktop/上传文件路径 alpha:/dsserver/robot
+
+
+	  1、从服务器下载文件
+		scp username@servername:/remote_path/filename ~/local_destination
+	  
+	  2、上传本地文件到服务器
+	  	scp ~/local_path/local_filename username@servername:/remote_path  
+	    
+	  3、从服务器下载整个目录
+	    scp -r username@servername:/remote_path/remote_dir/ ~/local_destination
+	  
+	  4、上传目录到服务器
+		scp  -r ~/local_dir username@servername:/remote_path/remote_dir

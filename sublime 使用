@@ -1,0 +1,105 @@
+sublime：
+MAC下的快捷键
+	command + [ 向左缩进
+	command + ]	向右缩进
+	command	+ control + ↑ 与上一行互换
+	command	+ control + ↑ 与上一行互换
+	command + shift + D  复制粘贴当前行
+	command + J    	拼接行
+	command + ←		到行首
+	command + → 	到行尾
+	command + option / 块注释
+	control + k :从光标开始的地方删除到行尾
+	control + shift + k :删除一整行
+	control + T :邻单词互换位置
+	control + D :向后删除
+
+1. 安装插件
+	1. 使用 ctrl + '`' 通过View->Show Console菜单打开命令行，粘贴如下代码：
+    
+    import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())
+
+    2. 安装运行python需要的插件
+    选择 text-->Preferences-->Package Control
+    在搜索框选择Install Package
+    再搜索框中输入你想要安装的插件：
+    	Anaconda , 这是python插件
+    	SublimeCodeIntel , 输入提示插件，安装后，在输入代码的时候会有提示 
+2. 常用插件
+	Emmet——Emmet 官方提供的 Sublime Text 扩展；//即zencoding，写html先装这一个就够了
+
+	SublimeLinter
+
+	——代码校验插件，支持 HTML、CSS、JS、PHP、Java、C++ 等16种语言；
+
+	HTML5
+
+	——HTML5 bundle for Sublime Text 2；
+
+	Alignment——代码对齐插件；
+
+	BracketHighlighter——括号高亮匹配；
+
+	Git——整合 Git 功能的插件；
+
+	jQuery
+
+	——代码智能提示插件；
+
+	LESS——LESS 代码高亮插件；
+
+	JsFormat——JavaScript 代码格式化插件；
+
+	Tag——HTML/XML 标签缩进、补全和校验；
+
+	LiveReload——让页面即时刷新；
+
+	Pretty JSON——JSON美化扩展；
+
+	Can I Use——查询 CSS 属性兼容情况；
+    
+	CoffeeScript——CoffeeScript 代码高亮，校验和编译等；
+
+	ColorPicker——跨平台取色器插件；
+3. 快捷键
+	Ctrl+Shift+P：打开命令面板
+	Ctrl+P：搜索项目中的文件
+	Ctrl+G：跳转到第几行
+	Ctrl+W：关闭当前打开文件
+	Ctrl+Shift+W：关闭所有打开文件
+	Ctrl+Shift+V：粘贴并格式化
+	Ctrl+D：选择单词，重复可增加选择下一个相同的单词
+	Ctrl+L：选择行，重复可依次增加选择下一行
+	Ctrl+Shift+L：选择多行
+	Ctrl+Shift+Enter：在当前行前插入新行
+	Ctrl+X：删除当前行
+	Ctrl+M：跳转到对应括号
+	Ctrl+U：软撤销，撤销光标位置
+	Ctrl+J：选择标签内容
+	Ctrl+F：查找内容
+	Ctrl+Shift+F：查找并替换   mac:command+option+F
+	Ctrl+H：替换
+	Ctrl+R：前往 method
+	Ctrl+N：新建窗口
+	Ctrl+K+B：开关侧栏
+	Ctrl+Shift+M：选中当前括号内容，重复可选着括号本身
+	Ctrl+F2：设置/删除标记
+	Ctrl+/：注释当前行
+	Ctrl+Shift+/：当前位置插入注释
+	Ctrl+Alt+/：块注释，并Focus到首行，写注释说明用的
+	Ctrl+Shift+A：选择当前标签前后，修改标签用的
+	F11：全屏
+	Shift+F11：全屏免打扰模式，只编辑当前文件
+	Alt+F3：选择所有相同的词
+	Alt+.：闭合标签
+	Alt+Shift+数字：分屏显示（mac com+option+数字）
+	Alt+数字：切换打开第N个文件
+	Shift+右键拖动：光标多不，用来更改或插入列内容
+	鼠标的前进后退键可切换Tab文件
+	按Ctrl，依次点击或选取，可需要编辑的多个位置
+	按Ctrl+Shift+上下键，可替换行
+4. 当前窗口打开，打开多个文件夹
+	Project-Add Folder to Project
+
+
+

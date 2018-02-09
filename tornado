@@ -1,0 +1,51 @@
+1. WebSocket
+	1. WebSocket 使得客户端和服务器之间的数据交换变得更加简单，允许服务端直接向客户端推送数据而不需要客户端进行请求，两者之间可以创建持久性的连接，并允许数据进行双向传送。
+	2. 方法
+		WebSocketHandler.open()
+		当一个WebSocket连接建立后被调用。
+
+		WebSocketHandler.on_message(message)
+		当客户端发送消息message过来时被调用，注意此方法必须被重写。
+
+		WebSocketHandler.on_close()
+		当WebSocket连接关闭后被调用。
+
+		WebSocketHandler.write_message(message, binary=False)
+		向客户端发送消息messagea，message可以是字符串或字典（字典会被转为json字符串）。若binary为False，则message以utf8编码发送；二进制模式（binary=True）时，可发送任何字节码。
+
+		WebSocketHandler.close()
+		关闭WebSocket连接。
+
+		WebSocketHandler.check_origin(origin)
+		判断源origin，对于符合条件（返回判断结果为True）的请求源origin允许其连接，否则返回403。可以重写此方法来解决WebSocket的跨域请求（如始终return True）。
+
+2. RequestHandler.request 对象存储了关于请求的相关信息，具体属性有：
+	method HTTP的请求方式，如GET或POST;
+	host 被请求的主机名；
+	uri 请求的完整资源标示，包括路径和查询字符串；
+	path 请求的路径部分；
+	query 请求的查询字符串部分；
+	protocol 协议；
+	version 使用的HTTP版本；
+	headers 请求的协议头，是类字典型的对象，支持关键字索引的方式获取特定协议头信息，例如：request.headers["Content-Type"]
+	body 请求体数据；
+	remote_ip 客户端的IP地址；
+	files 用户上传的文件，为字典类型，型如：
+	{
+	  "form_filename1":[<tornado.httputil.HTTPFile>, <tornado.httputil.HTTPFile>],
+	  "form_filename2":[<tornado.httputil.HTTPFile>,],
+	  ... 
+	}
+	tornado.httputil.HTTPFile是接收到的文件对象，它有三个属性：
+	filename 文件的实际名字，与form_filename1不同，字典中的键名代表的是表单对应项的名字；
+	body 文件的数据实体；
+	content_type 文件的类型。 这三个对象属性可以像字典一样支持关键字索引，如request.files["form_filename1"][0]["body"]。
+
+	url:'%s://%s%s'%(self.request.protocol,self.request.host,self.request.uri))
+
+3. RequestHandler的方法
+
+4. 调试SQL
+	在MySQLdb 的cursors.py的354行：def _query(self, q): q查询语句
+
+	

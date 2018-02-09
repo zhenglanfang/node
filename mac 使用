@@ -1,0 +1,62 @@
+1. 强制退出应用
+ Command-Option-Esc
+
+2. 打开csv文件乱码问题
+    转换为utf-8 bom
+
+3. 修改环境变量
+	查看环境变量:echo $PATH
+	添加环境变量:
+		1. sudo vi ~/.bash_profile
+		2. export PATH=$PATH:/usr/local/mongodb/bin
+	保存
+
+4. 权限问题
+	问题：chown: /usr/local: Operation not permitted
+	解决：
+		开机按 Command + R 启动, 
+		Utilities，进入终端
+		输入:csrutil disable
+	原因：苹果在OS X 10.11中引入的SIP特性使得即使加了sudo（也就是具有root权限）也无法修改系统级的目录
+
+5. mac 安装mysql
+	1. brew install mysql
+	2. mysql.server start
+	3. mysql -uroot
+
+	mysql 设置密码：
+		mysqladmin -u root -p password
+		输入密码
+		输入新的密码
+
+	mysql 远程登录
+	mysql -h 192.168.5.116 -P 3306 -u root -p123456
+
+	
+
+6. mac 安装mongodb
+	1. brew install mongodb
+	2. 配置
+		sudo vi ~/.bash_profile
+		添加：alias mongodb="/usr/local/bin/mongod --dbpath ~/Documents/mongo/db"
+		可以使用 mongodb直接启动服务
+	3. mongodb 启动服务，mongo 启动客户端
+
+7. 可显示隐藏文件和文件夹
+	在终端（Terminal）输入如下命令，即可显示隐藏文件和文件夹
+
+	defaults write com.apple.finder AppleShowAllFiles -boolean true
+	killall Finder
+
+	如需再次隐藏原本隐藏的文件和文件夹，可以输入如下命令
+	defaults write com.apple.finder AppleShowAllFiles -boolean false
+	killall Finder
+
+8. copy file path
+ 	command + option + C
+
+9. mac 打包 chrom插件
+	文件路径：/Users/mrs/Library/Application Support/Google/Chrome/Default/Extensions/gbkeegbaiigmenfmjfclcdgdpimamgkj(id)/122.2125.2127_0(版本)
+
+10. mac 复制文件路径：
+	command + option + C

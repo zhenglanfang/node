@@ -1,0 +1,67 @@
+1. 编码和解码
+	
+	Unicode 是「字符集」
+	UTF-8 是「编码规则」
+	其中：
+	字符集：为每一个「字符」分配一个唯一的 ID（学名为码位 / 码点 / Code Point）
+	编码规则：将「码位」转换为字节序列的规则（编码/解码 可以理解为 加密/解密 的过程）
+
+	Unicode和utf-8的关系：Unicode是内存编码表示方案（规范），而utf-8是如何保存和传输Unicode的方案（实现）
+
+2. #任何平台的任何编码 都能和 Unicode 互相转换
+
+
+3. python中的编码
+
+	str 编码成 bytes 格式：str.encode(s)
+	bytes 格式编码成 str 类型：bytes.decode(b)
+
+	字符类型：
+		Python2 str(bytes数据)和unicode
+		Python3 str(unicode数据)和bytes
+
+	python2中str的转换 '中'.decode('utf-8') : <type 'unicode'>
+					  u'中'.encode('utf-8') : <type 'str'> (bytes)
+
+	Python 2 悄悄掩盖掉了 byte 到 unicode 的转换，只要数据全部是 ASCII的话，
+	所有的转换都是正确的，一旦一个非 ASCII 字符偷偷进入你的程序，那么默认的解码将会失效，
+	从而造成 UnicodeDecodeError 的错误。
+
+
+4. UTF-8 与 GBK 互相转换，那就先把UTF-8转换成Unicode，再从Unicode转换成GBK，反之同理。
+	python2 
+	# 这是一个 UTF-8 编码的字符串
+	utf8Str = "你好地球"
+
+	# 1. 将 UTF-8 编码的字符串 转换成 Unicode 编码
+	unicodeStr = utf8Str.decode("UTF-8")
+
+	# 2. 再将 Unicode 编码格式字符串 转换成 GBK 编码
+	gbkData = unicodeStr.encode("GBK")
+
+	# 1. 再将 GBK 编码格式字符串 转化成 Unicode
+	unicodeStr = gbkData.decode("gbk")
+
+	# 2. 再将 Unicode 编码格式字符串转换成 UTF-8
+	utf8Str = unicodeStr.encode("UTF-8")
+
+5.  decode的作用是将其他编码的字符串转换成 Unicode 编码
+
+	encode的作用是将 Unicode 编码转换成其他编码的字符串
+
+	一句话：UTF-8是对Unicode字符集进行编码的一种编码方式
+
+
+6.
+	# 注意，Python2.x默认编码环境是ASCII，当和取回的数据编码格式不一致时，可能会造成乱码；
+	# 我们可以指定保存内容的编码格式，一般情况下，我们可以在代码最上方添加：
+
+	    import sys
+	    reload(sys)
+	    sys.setdefaultencoding("utf-8")
+
+	# 这三行代码是Python2.x里解决中文编码的万能钥匙
+
+
+
+
