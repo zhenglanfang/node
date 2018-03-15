@@ -1,0 +1,57 @@
+1. 安装依赖包
+	yum -y update
+
+	yum groupinstall -y 'development tools'
+
+	yum install -y zlib-devel bzip2-devel openssl-devel xz-libs wget
+
+2. 下载python2.7.9的包
+	wget http://www.python.org/ftp/python/2.7.13/Python-2.7.13.tar.xz
+
+	xz -d Python-2.7.13.tar.xz
+
+	tar -xvf Python-2.7.13.tar
+
+3. 安装
+	cd Python-2.7.9
+
+	./configure --prefix=/usr/local/python2.7
+	
+	make && make install
+
+4. 修改/usr/bin/python软连，指向python2.7
+	ln -sf /usr/local/python2.7/bin/python2.7 /usr/bin/python
+
+5. 测试
+	# python
+	Python 2.7.10 (default, Mar 15 2018, 13:24:50) 
+	[GCC 4.8.1] on linux2
+	Type "help", "copyright", "credits" or "license" for more information.
+	>>> import numpy
+
+6. 安装pip
+	1. cd /temp/
+	
+	2. wget https://bootstrap.pypa.io/get-pip.py
+	
+	3. python get-pip.py
+
+	4. 修改环境变量
+		vi /etc/profile
+		在末尾添加
+		export PATH=$PATH:/usr/local/python2.7/bin
+		重启(https://www.cnblogs.com/endv/p/6622452.html)
+		shutdown -r now
+	5. 测试
+		pip -V
+		pip 9.0.1 from /usr/local/python2.7/lib/python2.7/site-packages (python 2.7)
+
+7. yum
+	centos6.8使用的yum命令是依赖于python2.6的，我们修改了/usr/bin/python的指向后，yum命令就不可用了
+	
+	vi /usr/bin/yum
+	将 #!/usr/bin/python 改为
+	  #!/usr/bin/python2.6
+
+	
+	

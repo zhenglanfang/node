@@ -1,0 +1,136 @@
+https://github.com/tensorflow/tensorflow/blob/master/tensorflow/docs_src/install/install_linux.md#InstallingVirtualenv
+
+https://www.jianshu.com/p/f9c966d6ad22
+
+1. pip install --ignore-installed --upgrade https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-1.2.1-cp27-none-linux_x86_64.whl
+
+2. # python
+   Import tensorflow as tf
+
+   ImportError: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by /usr/local/python2.7/lib/python2.7/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so)
+
+   /lib64/libc.so.6: version `GLIBC_2.14' not found
+   解决错误：
+	yum install gcc
+	cd /tmp/
+	wget http://ftp.gnu.org/pub/gnu/glibc/glibc-2.17.tar.xz
+	xz -d glibc-2.17.tar.xz
+	tar -xvf glibc-2.17.tar
+	cd glibc-2.17
+	mkdir build
+	cd build
+	../configure --prefix=/usr --disable-profile --enable-add-ons --with-headers=/usr/include --with-binutils=/usr/bin  
+	make && make install
+
+	输入strings /lib64/libc.so.6|grep GLIBC发现已经更新 
+
+	[root@i-fjrbymt2 build]# strings /lib64/libc.so.6|grep GLIBC
+	GLIBC_2.2.5
+	GLIBC_2.2.6
+	GLIBC_2.3
+	GLIBC_2.3.2
+	GLIBC_2.3.3
+	GLIBC_2.3.4
+	GLIBC_2.4
+	GLIBC_2.5
+	GLIBC_2.6
+	GLIBC_2.7
+	GLIBC_2.8
+	GLIBC_2.9
+	GLIBC_2.10
+	GLIBC_2.11
+	GLIBC_2.12
+	GLIBC_2.13
+	GLIBC_2.14
+	GLIBC_2.15
+	GLIBC_2.16
+	GLIBC_2.17
+	GLIBC_PRIVATE
+
+3. 再次import tensorflow 
+	
+	ImportError: /usr/lib64/libstdc++.so.6: version `GLIBCXX_3.4.18' not found (required by /usr/local/python2.7/lib/python2.7/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so)
+
+	ImportError: /usr/lib64/libstdc++.so.6: version `GLIBCXX_3.4.18'
+
+	解决方法:
+		(
+			https://github.com/qiwsir/ITArticles/blob/master/Linux/upgrade_gcc_on_Centos.md,
+			https://www.jianshu.com/p/f9c966d6ad22
+			http://blog.csdn.net/u011832895/article/details/53731199
+
+		)
+		cd /tmp/
+		wget http://ftp.gnu.org/gnu/gcc/gcc-4.8.1/gcc-4.8.1.tar.gz
+		tar -xvzf gcc-4.8.1.tar.gz
+		cd gcc-4.8.1
+		./contrib/download_prerequisites
+		cd ..
+		mkdir build_gcc_4.8.1
+		cd build_gcc_4.8.1
+		../gcc-4.8.1/configure --enable-checking=release --enable-languages=c,c++ --disable-multilib
+		make -j23
+		make install
+
+		OK,在build_gcc_4.8.1中将gcc已经安装完成
+
+		确定新安装的GCC的路径，之前安装时记下最后mv时的路径即可，我是默认安在了/usr/local/bin
+
+		ls /usr/local/bin | grep gcc
+
+		/usr/sbin/update-alternatives --install  /usr/bin/gcc gcc /usr/local/bin/x86_64-unknown-linux-gnu-gcc-4.8.1 40
+
+		gcc --version      #查看版本
+
+		/usr/sbin/update-alternatives --install /usr/bin/g++ g++ /usr/local/bin/g++ 40
+
+		g++ --version     #查看版本
+
+		但是此时/usr/lib64/libstdc++.so.6 还是软连接 /usr/lib64/libstdc++.so.6.0.13 
+		先去掉此连接：
+		rm -rf  /usr/lib64/libstdc++.so.6 -> /usr/lib64/libstdc++.so.6.0.13
+		再新建连接：
+		ln -s /usr/local/lib64/libstdc++.so.6.0.18 /usr/lib64/libstdc++.so.6
+
+4. 再次import tensorflow 
+
+	ImportError: /usr/local/python2.7/lib/python2.7/site-packages/tensorflow/python/_pywrap_tensorflow_internal.so: undefined symbol: PyUnicodeUCS4_AsASCIIString
+
+	undefined symbol: PyUnicodeUCS4_AsASCIIString
+
+	解决(http://blog.csdn.net/taolinke/article/details/50472451)
+
+		重新编译库python2.7
+
+		找到安装python2.7时的文件夹
+
+		我的是在 
+		cd /tmp/Python-2.7.10
+		./configure --enable-unicode=ucs4 --prefix=/usr/local/python2.7
+		make && make install
+
+5. 又出现 undefined symbol: PyUnicodeUCS2_FromObject
+
+	Original error was: /usr/local/python2.7/lib/python2.7/site-packages/numpy/core/multiarray.so: undefined symbol: PyUnicodeUCS2_FromObject
+
+	重新安装 numpy
+
+	pip uninstall numpy
+	pip install numpy
+
+6. 测试
+
+	>>> import tensorflow as tf
+	>>> hello = tf.constant('Hello,TensorFlow!')
+	>>> sess = tf.Session()
+	>>> print(sess.run(hello))
+	Hello,TensorFlow!
+
+OK 完成~~~~
+
+
+
+
+
+
+
