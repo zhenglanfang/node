@@ -40,7 +40,7 @@
 	  	scp ~/local_path/local_filename username@servername:/remote_path  
 	    
 	  3、从服务器下载整个目录
-	    scp -r username@servername:/remote_path/remote_dir/ ~/local_destination
+	    scp -r username@servername:/remote_path/remote_dir ~/local_destination
 	  
 	  4、上传目录到服务器
 		scp  -r ~/local_dir username@servername:/remote_path/remote_dir
