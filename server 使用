@@ -44,3 +44,6 @@
 	  
 	  4、上传目录到服务器
 		scp  -r ~/local_dir username@servername:/remote_path/remote_dir
+
+9. 查看动态的日志
+	tailf 文件名
