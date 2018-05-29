@@ -4,7 +4,7 @@ mkdir  project
 cd project
 git init
 git clone http://zlf:zheng2017@git.essential.com.cn:8000/mrs-ai/main_server.git
-git clone https://zhenglanfang:lanfang123@github.com/zhenglanfang/lagou.git
+git clone https://user:pwd@github.com/zhenglanfang/lagou.git
 zlf:zheng2017
 提交：
 cd main_server
