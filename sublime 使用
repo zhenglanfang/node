@@ -102,4 +102,15 @@ MAC下的快捷键
 	Project-Add Folder to Project
 
 
+5. mac下查找和替换
+	replace: command + option + F
+	全局搜索: command + shift + F
+	获取正则匹配的值：
+	例：
+	text: 123哈哈哈3
+	re: .*?(哈{3}).*
+	replace: 呀$1呀
+	result: 呀哈哈哈呀
+
+
 
