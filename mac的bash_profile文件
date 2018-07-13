@@ -1,0 +1,24 @@
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
+
+# Setting PATH for Python 3.5
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
+
+# 设置mongdb启动
+alias mongodb="/usr/local/bin/mongod --dbpath ~/Documents/mongo/db"
+
+# 设置virtualenvwrapper
+export WORKON_HOME=/Users/mrs/.myvirtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH

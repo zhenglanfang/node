@@ -8,7 +8,7 @@
 	查看环境变量:echo $PATH
 	添加环境变量:
 		1. sudo vi ~/.bash_profile
-		2. export PATH=$PATH:/usr/local/mongodb/bin
+		2. export PATH=$PATH:/usr/local/bin/mongodb
 	保存
 
 4. 权限问题
