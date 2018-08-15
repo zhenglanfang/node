@@ -3,9 +3,8 @@ git
 mkdir  project
 cd project
 git init
-git clone http://zlf:zheng2017@git.essential.com.cn:8000/mrs-ai/main_server.git
 git clone https://user:pwd@github.com/zhenglanfang/lagou.git
-zlf:zheng2017
+如果用户名或者密码里有 @ 可用 %40 替换
 提交：
 cd main_server
 git add .
